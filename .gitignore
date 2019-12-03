@@ -1,0 +1,7 @@
+venv
+.idea
+.vscode
+img
+*.pyc
+*.h5
+*.iml
