@@ -10,9 +10,11 @@ from flask import (
 )
 from werkzeug.utils import secure_filename
 from tensor_model import load_model, predict
+from plot_def import generate_pred_graph
 
 app = Flask(__name__)
 UPLOAD_FOLDER = '/tmp'
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 
 @app.route('/')
@@ -35,7 +37,8 @@ def upload_file():
             filename = secure_filename(file.filename)
             path = os.path.join(UPLOAD_FOLDER, filename)
             file.save(path)
-            label = predict(model, path)    
+            label = predict(model, path)
+            generate_pred_graph(label)    
             return render_template('uploaded.html', label=label)
     elif request.method == 'GET':
         return render_template('upload.html')

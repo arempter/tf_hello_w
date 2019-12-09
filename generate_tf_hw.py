@@ -39,7 +39,7 @@ outputs = layers.Dense(10, activation='softmax')(x)
 
 model = Model(inputs, outputs, name='toy_resnet')
 
-epochs = 20
+epochs = 1
 seed = 11
 # sparse_categorical_crossentropy / binary_crossentropy / categorical_crossentropy
 model.compile(loss='categorical_crossentropy', optimizer=optimizers.RMSprop(1e-3), metrics=['accuracy'])
